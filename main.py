@@ -1,6 +1,10 @@
 import os
 from os import startfile
+from os import system
 from tkinter import *
+
+# Programs list:
+programDict = {"yt": "www.youtube.com", "discord": "C:\\Users\\MIGUEL\\AppData\\Local\\Discord\\Update.exe --processStart Discord.exe", "twitter": "www.twitter.com", "lol": "\"D:\\Riot Games\\Riot Client\\RiotClientServices.exe\" --launch-product=league_of_legends --launch-patchline=live", "vscode": "\"C:\\Users\\MIGUEL\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe\"", "chrome": "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe", "wpp": "\"C:\\Users\\MIGUEL\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe\"", "spotify": "C:\\Users\\MIGUEL\\AppData\\Roaming\\Spotify\\Spotify.exe"}
 
 # Color Variables:
 mainText = "#DC143C"
@@ -16,7 +20,17 @@ fourthBg= "#FAFAFA"
 # Function of the click event
 def click():
     enteredPrograms = textentry.get() #gets the text box value
-    output.delete(0.0, END) #clears the text box
+    textentry.delete(0, END) #clears the text box
+    listOfInputs = enteredPrograms.split()
+    for element in listOfInputs:
+        try:
+            startfile(str(detection(element)))
+        except:
+            system(str(detection(element)))
+
+# Function that detects wether the program is or not in the program list:
+def detection(inputedData):
+    return programDict[str(inputedData)]
 
 # Function to open apps
 
